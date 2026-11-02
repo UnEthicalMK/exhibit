@@ -1,0 +1,138 @@
+{
+  "dispute_id": "PP-R-KVW-10195807",
+  "create_time": "2026-11-01T17:13:16.300Z",
+  "update_time": "2026-11-02T19:27:23.849Z",
+  "disputed_transactions": [
+    {
+      "buyer_transaction_id": "9VE197807C834321G",
+      "seller_transaction_id": "0W95873078836910S",
+      "create_time": "2026-11-01T17:06:04.000Z",
+      "transaction_status": "HELD",
+      "gross_amount": {
+        "currency_code": "USD",
+        "value": "68.00"
+      },
+      "buyer": {
+        "email": "sb-ufdlr53638160@personal.example.com",
+        "payer_id": "YAGR6A9BEV53S",
+        "name": "John Doe"
+      },
+      "seller": {
+        "email": "sb-pteam53656907@business.example.com",
+        "merchant_id": "RUVYGUNVB3BBQ",
+        "name": "Test Store"
+      },
+      "items": [
+        {
+          "item_name": "Test order",
+          "item_description": "Test order",
+          "item_quantity": "1",
+          "reason": "MERCHANDISE_OR_SERVICE_NOT_RECEIVED",
+          "item_type": "PRODUCT"
+        }
+      ],
+      "seller_protection_eligible": true,
+      "seller_protection_type": "EXPANDED_SELLER_PROTECTION"
+    }
+  ],
+  "reason": "MERCHANDISE_OR_SERVICE_NOT_RECEIVED",
+  "status": "WAITING_FOR_BUYER_RESPONSE",
+  "dispute_amount": {
+    "currency_code": "USD",
+    "value": "68.00"
+  },
+  "dispute_state": "REQUIRED_OTHER_PARTY_ACTION",
+  "fund_movements": [
+    {
+      "party": "RECEIVER",
+      "amount": {
+        "currency_code": "USD",
+        "value": "65.14"
+      },
+      "initiated_time": "2026-11-01T17:16:34.000Z",
+      "type": "DEBIT",
+      "reason": "HOLD_PLACED"
+    }
+  ],
+  "dispute_life_cycle_stage": "INQUIRY",
+  "dispute_channel": "INTERNAL",
+  "messages": [
+    {
+      "posted_by": "BUYER",
+      "time_posted": "2026-11-01T17:13:16.300Z",
+      "content": "Test dispute for sandbox development. Ordered a physical item and it has not arrived. No tracking update received."
+    }
+  ],
+  "extensions": {
+    "buyer_contacted_time": "2026-11-01T17:13:15.828Z"
+  },
+  "evidences": [
+    {
+      "evidence_type": "CREATE",
+      "notes": "Test dispute for sandbox development. Ordered a physical item and it has not arrived. No tracking update received.",
+      "source": "SUBMITTED_BY_BUYER",
+      "date": "2026-11-01T17:13:16.300Z",
+      "dispute_life_cycle_stage": "INQUIRY"
+    },
+    {
+      "evidence_type": "PROOF_OF_FULFILLMENT",
+      "evidence_info": {
+        "tracking_info": [
+          {
+            "carrier_name": "FEDEX",
+            "tracking_number": "122533485"
+          }
+        ]
+      },
+      "notes": "Sandbox test: shipped with tracking.",
+      "source": "SUBMITTED_BY_SELLER",
+      "date": "2026-11-02T19:27:10.828Z",
+      "action_info": {
+        "action": "PROVIDE_EVIDENCE"
+      },
+      "dispute_life_cycle_stage": "INQUIRY"
+    }
+  ],
+  "buyer_response_due_date": "2026-11-21T17:13:16.300Z",
+  "offer": {
+    "buyer_requested_amount": {
+      "currency_code": "USD",
+      "value": "68.00"
+    }
+  },
+  "refund_details": {
+    "allowed_refund_amount": {
+      "currency_code": "USD",
+      "value": "68.00"
+    }
+  },
+  "allowed_response_options": {
+    "accept_claim": {
+      "accept_claim_types": [
+        "REFUND"
+      ]
+    }
+  },
+  "links": [
+    {
+      "href": "https://api-m.sandbox.paypal.com/v1/customer/disputes/PP-R-KVW-10195807",
+      "rel": "self",
+      "method": "GET"
+    },
+    {
+      "href": "https://api-m.sandbox.paypal.com/v1/customer/disputes/PP-R-KVW-10195807/accept-claim",
+      "rel": "accept_claim",
+      "method": "POST"
+    },
+    {
+      "href": "https://api-m.sandbox.paypal.com/v1/customer/disputes/PP-R-KVW-10195807/send-message",
+      "rel": "send_message",
+      "method": "POST"
+    },
+    {
+      "href": "https://api-m.sandbox.paypal.com/v1/customer/disputes/PP-R-KVW-10195807/escalate",
+      "rel": "escalate",
+      "method": "POST"
+    }
+  ]
+}
