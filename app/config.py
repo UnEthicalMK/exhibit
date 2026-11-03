@@ -6,6 +6,7 @@ class Settings(BaseSettings):
     paypal_env: str = "SANDBOX"
     paypal_client_id: str
     paypal_client_secret: str
+    database_url: str = "sqlite:///./exhibit.db"
 
 
 settings = Settings()
