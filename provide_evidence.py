@@ -4,6 +4,19 @@ import requests
 
 BASE = "https://api-m.sandbox.paypal.com"
 
+EVIDENCE = {
+    "PROOF_OF_FULFILLMENT": {
+        "evidence_type": "PROOF_OF_FULFILLMENT",
+        "evidence_info": {"tracking_info": [
+            {"carrier_name": "FEDEX", "tracking_number": "122533485"}]},
+        "notes": "Sandbox test: shipped with tracking.",
+    },
+    "OTHER": {
+        "evidence_type": "OTHER",
+        "notes": "Sandbox test: the item was delivered to the buyer's address.",
+    },
+}
+
 env = {}
 for line in Path(".env").read_text(encoding="utf-8-sig").splitlines():
     line = line.strip()
@@ -13,6 +26,11 @@ for line in Path(".env").read_text(encoding="utf-8-sig").splitlines():
 if env.get("PAYPAL_ENV") != "SANDBOX":
     raise SystemExit("Stopping: PAYPAL_ENV must be SANDBOX")
 
+dispute_id = sys.argv[1]
+evidence_type = sys.argv[2] if len(sys.argv) > 2 else "PROOF_OF_FULFILLMENT"
+if evidence_type not in EVIDENCE:
+    raise SystemExit("Evidence type must be one of: " + ", ".join(EVIDENCE))
+
 token = requests.post(
     BASE + "/v1/oauth2/token",
     auth=(env["PAYPAL_CLIENT_ID"], env["PAYPAL_CLIENT_SECRET"]),
@@ -20,20 +38,11 @@ token = requests.post(
 ).json()["access_token"]
 headers = {"Authorization": "Bearer " + token}
 
-dispute_id = sys.argv[1]
 case = requests.get(f"{BASE}/v1/customer/disputes/{dispute_id}", headers=headers).json()
-
-# Only act if PayPal says this action is allowed on this case.
 if "provide_evidence" not in [link["rel"] for link in case.get("links", [])]:
     raise SystemExit(f"No provide_evidence link. Status is {case.get('status')}. Nothing sent.")
 
-payload = {"evidences": [{
-    "evidence_type": "PROOF_OF_FULFILLMENT",
-    "evidence_info": {"tracking_info": [
-        {"carrier_name": "FEDEX", "tracking_number": "122533485"}]},
-    "notes": "Sandbox test: shipped with tracking.",
-}]}
-
+payload = {"evidences": [EVIDENCE[evidence_type]]}
 print("About to send this to", dispute_id)
 print(json.dumps(payload, indent=2))
 if input("Type YES to send (sandbox only): ") != "YES":

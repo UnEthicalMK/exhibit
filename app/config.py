@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     paypal_client_id: str
     paypal_client_secret: str
     database_url: str = "sqlite:///./exhibit.db"
+    paypal_webhook_id: str = ""
+    sync_interval_seconds: int = 120
 
 
 settings = Settings()

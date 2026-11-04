@@ -20,3 +20,13 @@ class Dispute(SQLModel, table=True):
     allowed_actions: list[str] = Field(default_factory=list, sa_column=Column(JSON))
     raw: dict = Field(default_factory=dict, sa_column=Column(JSON))  # full PayPal response
     synced_at: datetime = Field(default_factory=utcnow)
+
+
+class WebhookEvent(SQLModel, table=True):
+    id: str = Field(primary_key=True)  # PayPal's event id; a repeat delivery has the same id
+    event_type: str
+    dispute_id: str | None = None
+    verified: bool = False
+    processed: bool = False
+    raw: dict = Field(default_factory=dict, sa_column=Column(JSON))
+    received_at: datetime = Field(default_factory=utcnow)

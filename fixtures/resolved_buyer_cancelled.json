@@ -1,0 +1,129 @@
+{
+  "dispute_id": "PP-R-WNO-10196385",
+  "create_time": "2026-11-04T15:05:53.377Z",
+  "update_time": "2026-11-04T16:47:13.691Z",
+  "disputed_transactions": [
+    {
+      "buyer_transaction_id": "3NY10151B4622564S",
+      "seller_transaction_id": "3XH07089PH7262005",
+      "create_time": "2026-11-04T15:04:23.000Z",
+      "transaction_status": "COMPLETED",
+      "gross_amount": {
+        "currency_code": "USD",
+        "value": "68.00"
+      },
+      "buyer": {
+        "email": "sb-ufdlr53638160@personal.example.com",
+        "payer_id": "YAGR6A9BEV53S",
+        "name": "John Doe"
+      },
+      "seller": {
+        "email": "sb-pteam53656907@business.example.com",
+        "merchant_id": "RUVYGUNVB3BBQ",
+        "name": "Test Store"
+      },
+      "items": [
+        {
+          "item_name": "Sandbox",
+          "item_description": "Sandbox",
+          "item_quantity": "1",
+          "reason": "MERCHANDISE_OR_SERVICE_NOT_RECEIVED",
+          "item_type": "PRODUCT"
+        }
+      ],
+      "seller_protection_eligible": true,
+      "seller_protection_type": "EXPANDED_SELLER_PROTECTION"
+    }
+  ],
+  "reason": "MERCHANDISE_OR_SERVICE_NOT_RECEIVED",
+  "status": "RESOLVED",
+  "dispute_amount": {
+    "currency_code": "USD",
+    "value": "68.00"
+  },
+  "dispute_state": "RESOLVED",
+  "dispute_outcome": {
+    "outcome_code": "CANCELED_BY_BUYER",
+    "outcome_reason": "BUYER_CANCELLED_CASE"
+  },
+  "fund_movements": [
+    {
+      "party": "RECEIVER",
+      "amount": {
+        "currency_code": "USD",
+        "value": "65.14"
+      },
+      "initiated_time": "2026-11-04T15:09:34.000Z",
+      "type": "DEBIT",
+      "reason": "HOLD_PLACED"
+    },
+    {
+      "party": "RECEIVER",
+      "amount": {
+        "currency_code": "USD",
+        "value": "65.14"
+      },
+      "initiated_time": "2026-11-04T16:46:04.000Z",
+      "type": "CREDIT",
+      "reason": "HOLD_RELEASED"
+    }
+  ],
+  "dispute_life_cycle_stage": "INQUIRY",
+  "dispute_channel": "INTERNAL",
+  "messages": [
+    {
+      "posted_by": "BUYER",
+      "time_posted": "2026-11-04T15:05:53.377Z",
+      "content": "Sandbox run"
+    }
+  ],
+  "extensions": {
+    "buyer_contacted_time": "2026-11-04T15:05:52.819Z"
+  },
+  "evidences": [
+    {
+      "evidence_type": "CREATE",
+      "notes": "Sandbox run",
+      "source": "SUBMITTED_BY_BUYER",
+      "date": "2026-11-04T15:05:53.377Z",
+      "dispute_life_cycle_stage": "INQUIRY"
+    },
+    {
+      "evidence_type": "PROOF_OF_FULFILLMENT",
+      "evidence_info": {
+        "tracking_info": [
+          {
+            "carrier_name": "FEDEX",
+            "tracking_number": "122533485"
+          }
+        ]
+      },
+      "notes": "Sandbox test: shipped with tracking.",
+      "source": "SUBMITTED_BY_SELLER",
+      "date": "2026-11-04T15:16:33.218Z",
+      "action_info": {
+        "action": "PROVIDE_EVIDENCE"
+      },
+      "dispute_life_cycle_stage": "INQUIRY"
+    }
+  ],
+  "offer": {
+    "buyer_requested_amount": {
+      "currency_code": "USD",
+      "value": "68.00"
+    }
+  },
+  "refund_details": {
+    "allowed_refund_amount": {
+      "currency_code": "USD",
+      "value": "68.00"
+    }
+  },
+  "links": [
+    {
+      "href": "https://api-m.sandbox.paypal.com/v1/customer/disputes/PP-R-WNO-10196385",
+      "rel": "self",
+      "method": "GET"
+    }
+  ]
+}
